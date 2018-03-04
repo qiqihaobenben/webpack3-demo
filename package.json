@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build:1": "node_modules/.bin/webpack --config ./1-basic-sample/webpack.config.js",
+    "build:1": "webpack --config ./1-basic-sample/webpack.config.js",
     "build:2": "node_modules/.bin/webpack --config ./2-loaders/webpack.config.js",
     "build:3": "node_modules/.bin/webpack --config ./3-plugins/webpack.config.js",
     "build:4": "node_modules/.bin/webpack --config ./4-resolve/webpack.config.js",
@@ -35,21 +35,20 @@
     "url": "https://github.com/jrainlau/webpack-learning/issues"
   },
   "homepage": "https://github.com/jrainlau/webpack-learning#readme",
-  "dependencies": {
-    "webpack": "^3.8.1"
-  },
+  "dependencies": {},
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
+    "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.6.1",
+    "babel-runtime": "^6.26.0",
     "clean-webpack-plugin": "^0.1.17",
-    "css-loader": "^0.28.7",
-    "extract-text-webpack-plugin": "^3.0.2",
+    "css-loader": "^0.28.9",
+    "friendly-errors-webpack-plugin": "^1.6.1",
     "html-webpack-plugin": "^2.30.1",
-    "loader-utils": "^1.1.0",
-    "style-loader": "^0.19.0",
-    "uglifyjs-webpack-plugin": "^1.0.1",
-    "webpack-dev-server": "^2.9.3",
-    "webpack-merge": "^4.1.0"
+    "style-loader": "^0.19.1",
+    "webpack": "^3.10.0",
+    "webpack-dev-server": "^2.11.1",
+    "webpack-merge": "^4.1.1"
   }
 }
