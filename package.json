@@ -22,7 +22,8 @@
     "dll:14": "node_modules/.bin/webpack --config ./14-dll/webpack.dll.config.js",
     "build:14": "node_modules/.bin/webpack --config ./14-dll/webpack.config.js",
     "dev:15": "node ./15-complete-sample/webpack/dev.js",
-    "build:15": "node ./15-complete-sample/webpack/build.js"
+    "build:15": "node ./15-complete-sample/webpack/build.js",
+    "dev:demo": "node ./demo/build/dev.js"
   },
   "repository": {
     "type": "git",
