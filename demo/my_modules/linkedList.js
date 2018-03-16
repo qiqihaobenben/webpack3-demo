@@ -75,6 +75,10 @@ class LinkedList {
         }else {
             return false;
         }
+    }
 
+    // 返回元素在列表中的索引。如果列表中没有该元素则返回-1
+    indexOf(element) {
+        
     }
 }
