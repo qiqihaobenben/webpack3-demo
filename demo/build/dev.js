@@ -1,4 +1,5 @@
 let webpack = require('webpack');
+let opn = require('opn');
 let devConfig = require('./webpack.dev.conf');
 let { resolve } = require('path');
 let getPath = (dir) => resolve(__dirname, '../', dir);
@@ -9,6 +10,7 @@ let compiler = webpack(devConfig, function (err, stats){
         colors: true,
         chunks: false
     }))
+    opn('http://localhost:9000')
 });
 /* compiler.run((err, stats) => {
     if (err) {
