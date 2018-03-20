@@ -18,10 +18,5 @@ hash.put('wenting','wenting@email.com')
 hash.put('yanqing','yanqing@email.com')
 hash.put('xufang', 'xufang@email.com')
 hash.put('tingwen', 'tingwen@email.com')
-// 因为在put方法中我们打印了位置和值
-// 20--fangxu@email.com
-// 24--wenting@email.com
-// 19--yanqing@email.com
 
-console.log(hash.get('yanqing')) // undefined
 hash.print()
