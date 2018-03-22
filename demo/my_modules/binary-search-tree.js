@@ -38,8 +38,39 @@ function BinarySearchTree() {
   }
 
   // 树的遍历有三种，中序，先序，后序
-  // 中序遍历
+  // 中序遍历：一种以上行顺序访问BST所有节点的遍历方式，也就是以从小到大的顺序访问所有节点。
   this.inOrderTraverse = function (callback) {
+    var inOrderTraverseNode(node, callback) {
+      if(node !== null) {
+        inOrderTraverseNode(node.left, callback)
+        callback(node.key)
+        inOrderTraverseNode(node.right, callback)
+      }
+    };
+    inOrderTraverse(root, callback)
+  }
 
+  // 先序遍历：以优先于后代节点的顺序访问每个节点。
+  this.preOrderTraverse = function (callback) {
+    var preOrderTraverseNode = function (node, callback) {
+      if(node !== null) {
+        callback(node.key);
+        preOrderTraverseNode(node.left, callback)
+        preOrderTraverseNode(node.right, callback)
+      }
+    }
+    preOrderTraverseNode(root, callback)
+  }
+
+  // 后序遍历： 后序遍历先访问节点的后代节点，再访问节点本身。
+  this.postOrderTraverse = function (callback){
+    var postOrderTraverseNode = function (node, callback){
+      if(node !== null) {
+        postOrderTraverseNode(node.left, callback)
+        postOrderTraverseNode(node.right, callback)
+        callback(node.key)
+      }
+    }
+    postOrderTraverseNode(root, callback)
   }
 }
