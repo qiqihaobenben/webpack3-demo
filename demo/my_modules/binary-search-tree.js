@@ -73,4 +73,98 @@ function BinarySearchTree() {
     }
     postOrderTraverseNode(root, callback)
   }
+
+  // 搜索最小值
+  this.min = function () {
+    var minNode = function(node){
+      if(node){
+        while(node && node.left !== null) {
+          node = node.left;
+        }
+        return node.key;
+      }
+      return null;
+    }
+    return minNode(root);
+  }
+
+  // 搜索最大值
+  this.max = function () {
+    var maxNode = function(node) {
+      if(node) {
+        while(node && node.right !== null) {
+          node = node.right;
+        }
+        return node.key;
+      }
+      return null;
+    }
+    return maxNode(root);
+  }
+
+  // 找一个特定的值，然后存在返回true，不存在返回false
+  this.search = function (key) {
+    var searchNode = function (node,key) {
+      if(node === null) {
+        return false;
+      }
+      if(key < node.key) {
+        searchNode(node.left, key)
+      }else if(key > node.key) {
+        searchNode(node.right, key)
+      }else {
+        return true;
+      }
+    }
+    return searchNode(root, key)
+  }
+
+  // 移除一个节点
+  this.remove = function (key) {
+    var removeNode = function (node, key) {
+      if(node === null) {
+        return null;
+      }
+      if(key < node.key) {
+        node.left = removeNode(node.left, key);
+        return node;
+      }else if(key > node.key) {
+        node.right = removeNode(node.right,key);
+        return node;
+      }else { // 键等于node.key
+        // 第一种情况，一个叶节点
+        if(node.left === null && node.right === null) {
+          node = null;
+          return node;
+        }
+
+        // 第二种情况，一个只有一个子节点的节点
+        if(node.left === null) {
+          node = node.right;
+          return node;
+        }
+        if(node.right === null) {
+          node = node.left;
+          return node;
+        }
+
+        // 第三种情况,一个有两个子节点的节点（最难想的）
+
+        function findMinNode(node) { //获取最小节点
+          while(node && node.left !== null) {
+            node = node.left;
+          }
+          return node;
+        }
+        // 找到需要移除的节点后，发现有左右两个子节点，那就去找右侧节点下面最小的节点，这个节点一定比要移除的那个节点左侧的节点大，比右侧的节点小（与右侧最小的相等）
+        var aux = findMinNode(node.right); 
+        // 把右侧这个最小的节点的key赋值给要移除的节点，通过这一步，我们就改变了要移除节点的值，也就是说这个节点被移除了。
+        node.key = aux.key;
+        // 上一步造成了
+        node.right = removeNode(node.right, aux.key);
+        return node;
+      }
+
+    }
+  }
 }
