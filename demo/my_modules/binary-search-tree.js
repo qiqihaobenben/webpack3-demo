@@ -14,7 +14,7 @@ function BinarySearchTree() {
   // 向树中插入一个新的键
   this.insert = function (key) {
     var newNode = new Node(key);
-    var insetNode = function (node, newNode) {
+    var insertNode = function (node, newNode) {
       if(newNode.key < node.key){
         if(node.left === null) {
           node.left = newNode;
@@ -40,14 +40,14 @@ function BinarySearchTree() {
   // 树的遍历有三种，中序，先序，后序
   // 中序遍历：一种以上行顺序访问BST所有节点的遍历方式，也就是以从小到大的顺序访问所有节点。
   this.inOrderTraverse = function (callback) {
-    var inOrderTraverseNode(node, callback) {
+    var inOrderTraverseNode = function (node, callback) {
       if(node !== null) {
         inOrderTraverseNode(node.left, callback)
         callback(node.key)
         inOrderTraverseNode(node.right, callback)
       }
     };
-    inOrderTraverse(root, callback)
+    inOrderTraverseNode(root, callback)
   }
 
   // 先序遍历：以优先于后代节点的顺序访问每个节点。
@@ -109,9 +109,9 @@ function BinarySearchTree() {
         return false;
       }
       if(key < node.key) {
-        searchNode(node.left, key)
+        return searchNode(node.left, key)
       }else if(key > node.key) {
-        searchNode(node.right, key)
+        return searchNode(node.right, key)
       }else {
         return true;
       }
@@ -160,11 +160,14 @@ function BinarySearchTree() {
         var aux = findMinNode(node.right); 
         // 把右侧这个最小的节点的key赋值给要移除的节点，通过这一步，我们就改变了要移除节点的值，也就是说这个节点被移除了。
         node.key = aux.key;
-        // 上一步造成了
+        // 上一步造成了这个树中有两个拥有相同键的节点，这是不允许的，要继续把右侧子树中的最小节点移除，毕竟它已经被移至要移除的节点的位置了。
         node.right = removeNode(node.right, aux.key);
+        // 最后，向它的父节点返回更新后节点的引用
         return node;
       }
-
     }
+    root = removeNode(root, key)
   }
 }
+
+export default BinarySearchTree
