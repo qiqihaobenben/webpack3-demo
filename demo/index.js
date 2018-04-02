@@ -24,4 +24,7 @@ graph.addEdge('C','D')
 graph.addEdge('C','E')
 graph.addEdge('B','E')
 console.log(graph.toString())
+graph.bfs(myVertices[0],function (v) {
+    console.log('访问顶点'+v)
+})
 
