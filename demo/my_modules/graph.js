@@ -3,7 +3,7 @@ function Graph() {
     let vertices = [],
         adjList = new Map();
     let initilizeColor = function () {
-        let color = [];
+        let color = {};
         for(let i = 0; i < vertices.length; i++) {
             color[vertices[i]] = 'white';
         }
@@ -41,7 +41,36 @@ function Graph() {
             }
         }
     }
-
+    this.BFS = function (v) {
+        let color = initilizeColor(),
+            queue = new Queue(),
+            d = {},
+            pred = {};
+        queue.enqueue(v);
+        for(let i = 0; i < vertices.length; i++) {
+            d[vertices[i]] = 0;
+            pred[vertices[i]] = null;
+        }
+        while(!queue.isEmpty()) {
+            let u = queue.dequeue(),
+                neighbors = adjList.get(u);
+            color[u] = 'grey';
+            for(let i = 0; i < neighbors.length; i++) {
+                let w = neighbors[i];
+                if(color[w] === 'white') {
+                    queue.enqueue(w);
+                    color[w] = 'grey';
+                    d[w] = d[u] + 1;
+                    pred[w] = u;
+                }
+            }
+            color[u] = 'black';
+        }
+        return {
+            distances: d,
+            predecessors: pred
+        }
+    }
     this.toString = function () {
         let s = '';
         for(let i = 0; i < vertices.length; i++) {
