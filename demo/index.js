@@ -27,5 +27,6 @@ console.log(graph.toString())
 graph.bfs(myVertices[0],function (v) {
     console.log('访问顶点'+v)
 })
-console.log(graph.BFS(myVertices[0]))
+console.log(JSON.stringify(graph.BFS(myVertices[0])))
+//打印：{"distances":{"A":0,"B":1,"C":1,"D":1,"E":2},"predecessors":{"A":null,"B":"A","C":"A","D":"A","E":"B"}}
 
