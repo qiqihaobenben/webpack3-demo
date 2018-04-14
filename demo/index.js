@@ -28,5 +28,20 @@ graph.bfs(myVertices[0],function (v) {
     console.log('访问顶点'+v)
 })
 console.log(JSON.stringify(graph.BFS(myVertices[0])))
+let shortestPathA = graph.BFS(myVertices[0]);
+let fromVertex = myVertices[0];
+for(let i = 1; i < myVertices.length; i++) {
+    let toVertex = myVertices[i];
+    let path = new Stack();
+    for(let v = toVertex; v !== fromVertex; v = shortestPathA.predecessors[v]) {
+        path.push(v)
+    }
+    path.push(fromVertex)
+    let s = path.pop();
+    while(!path.isEmpty()) {
+        s += ` - ${path.pop()}`;
+    }
+    console.log(s)
+}
 //打印：{"distances":{"A":0,"B":1,"C":1,"D":1,"E":2},"predecessors":{"A":null,"B":"A","C":"A","D":"A","E":"B"}}
 
