@@ -71,6 +71,28 @@ function Graph() {
             predecessors: pred
         }
     }
+    this.dfs = function (callback) {
+        let dfsVisit = function (u, color, callback) {
+            color[u] = 'grey';
+            if(callback) {
+                callback(u)
+            }
+            let neighbors = adjList.get(u);
+            for(var i = 0; i < neighbors.length; i++) {
+                let w = neighbors[i];
+                if(color[w] === 'white') {
+                    dfsVisit(w, color, callback)
+                }
+            }
+            color[u] = 'black';
+        }
+        let color = initilizeColor();
+        for(let i = 0; i < vertices.length; i++) {
+            if(color[vertices[i]] === 'white') {
+                dfsVisit(vertices[i], color, callback)
+            }
+        }
+    }
     this.toString = function () {
         let s = '';
         for(let i = 0; i < vertices.length; i++) {
