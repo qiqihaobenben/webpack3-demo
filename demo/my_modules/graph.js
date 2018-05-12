@@ -93,6 +93,46 @@ function Graph() {
             }
         }
     }
+    this.DFS = function () {
+        let time = 0;
+        let color = initilizeColor(),
+        d = {},
+        f = {},
+        p = {};
+        let DFSVisit = function (u,color,d,f,p) {
+            console.log('discovered' + u)
+            color[u] = 'grey';
+            d[u] = ++time;
+            let neighbors = adjList.get(u);
+            for(let i = 0; i < neighbors.length; i++) {
+                var w = neighbors[i];
+                if(color[w] === 'white') {
+                    p[w] = u;
+                    DFSVisit(w,color,d,f,p)
+                }
+            }
+            color[u] = 'black';
+            f[u] = ++time;
+            console.log('explored' + u)
+            
+        }
+        for(let i = 0; i < vertices.length; i++) {
+            f[vertices[i]] = 0;
+            d[vertices[i]] = 0;
+            p[vertices[i]] = null;
+        }
+        for(let i = 0; i < vertices.length; i++) {
+            if(color[vertices[i]] === 'white') {
+                DFSVisit(vertices[i],color,d,f,p)
+            }
+        }
+        return {
+            discovery: d,
+            finished: f,
+            perdecessors: p
+        }
+
+    }
     this.toString = function () {
         let s = '';
         for(let i = 0; i < vertices.length; i++) {

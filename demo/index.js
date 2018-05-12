@@ -27,5 +27,6 @@ console.log(graph.toString())
 graph.dfs(function (v) {
     console.log('访问顶点'+v)
 })
+console.log(JSON.stringify(graph.DFS()))
 
 
